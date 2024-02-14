@@ -5,12 +5,14 @@ import { IoTicket } from "react-icons/io5";
 
 
 import React from 'react'
+import { asideMenu } from '@/constants';
+import { UserButton } from '@clerk/nextjs';
 
 const Navbars = () => {
   return (
-  <nav className='flex justify-between items-center bg-nav p-4'>
+  <nav className='hidden lg:flex justify-between items-center bg-nav p-4'>
     <div className='flex items-center justify-center space-x-4'>
-      <Link
+      {/* <Link
       className='flex items-center justify-center gap-2' 
       href='/'>
         <IoIosHome 
@@ -24,10 +26,23 @@ const Navbars = () => {
   className='icon'
           />
           Tickets
-      </Link>
+      </Link> */}
+      {asideMenu.map((item, i) => (
+    
+        <Link 
+        href={item.href}>
+          <p>{item.title}</p>
+          <Image
+          src={item.icon}
+          width={24}
+          height={24}
+          alt='asda'
+          className='text-white' />
+        </Link>
+      ))}
     </div>
     <div>
-      <p className='text-default-text'>Log in</p>
+    <UserButton afterSignOutUrl="/"/>
     </div>
   </nav>
     

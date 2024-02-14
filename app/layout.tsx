@@ -1,5 +1,8 @@
+import Aside from "@/components/Aside";
 import "./globals.css";
 import Navbars from "@/components/Navbars";
+import Bottombar from "@/components/Bottombar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export default function RootLayout({
   children,
@@ -7,11 +10,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
-      <body className="flex flex-col h-screen max-h-screen">
+      <body className="flex flex-col bg-page h-screen max-h-screen">
         <Navbars />
-        <main className="flex-grow overflow-y-auto bg-page text-default-text">{children}</main>
+        {/* <Aside /> */}
+        <main className="flex-grow overflow-y-auto   text-default-text">
+          {children}
+          </main>
+        <Bottombar />
       </body>
     </html>
+     </ClerkProvider>
   );
 }
